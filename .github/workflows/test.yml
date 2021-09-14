@@ -28,5 +28,5 @@ jobs:
 
       - uses: ./
         with:
-          input: ${{ toJSON(steps.save.outputs.json) }}
-          filter: label => label.name
+          input: ${{ toJSON(fromJSON(steps.save.outputs.json).include) }}
+          filter: label => label.name.startsWith('do')
