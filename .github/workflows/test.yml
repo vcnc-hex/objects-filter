@@ -27,6 +27,11 @@ jobs:
           include.*.name: ${{ toJSON(github.event.pull_request.labels.*.name) }}
 
       - uses: ./
+        id: test
         with:
           input: ${{ toJSON(fromJSON(steps.save.outputs.json).include) }}
           filter: label => label.name.startsWith('do')
+
+      - name: Get output
+        run: |
+          echo ${{ steps.test.outputs.json }}
