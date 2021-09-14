@@ -30,7 +30,7 @@ jobs:
         id: test
         with:
           input: ${{ toJSON(fromJSON(steps.save.outputs.json).include) }}
-          filter: label => label.name.startsWith('do')
+          filter: return label.name.startsWith('do')
 
       - name: Get output
         run: |
