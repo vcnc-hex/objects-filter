@@ -1,11 +1,14 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'objects-filter'
+description: 'Github Action Utility to filtering and mapping object'
+author: 'vcnc-hex'
 inputs:
-  milliseconds: # change this
+  json: # change this
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    description: 'JSON format of the Array type. ex) json: toJSON([...matrix...])'
+  filter: # change this
+    required: true
+    description: 'Filter function body with input argument. ex) filter: return input.name'
+
 runs:
-  using: 'node12'
+  using: 'node14'
   main: 'dist/index.js'
