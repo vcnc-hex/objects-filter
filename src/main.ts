@@ -9,7 +9,7 @@ async function run(): Promise<void> {
       include: JSON.parse(json).filter(filter_fn)
     })
     core.setOutput('json', output)
-    core.setOutput('escaped-json', replaceAll(output, '"', '\\x22'))
+    core.setOutput('escaped-json', replaceAll(output, '"', '\\"'))
   } catch (error) {
     core.setFailed(error.message)
   }
