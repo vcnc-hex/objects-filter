@@ -1,11 +1,11 @@
 name: 'build-test'
 on: # rebuild any PRs and main branch changes
   pull_request:
+    types: [opened, reopened, synchronize, labeled, unlabeled, closed]
   push:
     branches:
       - main
       - 'releases/*'
-
 jobs:
   build: # make sure build/ci work properly
     runs-on: ubuntu-latest
@@ -15,10 +15,23 @@ jobs:
           npm install
       - run: |
           npm run all
-  test: # make sure the action works on a clean machine without building
+
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: ./
+      - name: Store matrix
+        id: save
+        uses: nickofthyme/object-remap@v1
         with:
-          milliseconds: 1000
+          include.*.name: ${{ toJSON(github.event.pull_request.labels.*.name) }}
+
+      - uses: ./
+        id: test
+        with:
+          json: ${{ toJSON(fromJSON(steps.save.outputs.json).include) }}
+          filter: return input.name.startsWith('do')
+
+      - name: Get output
+        run: |
+          echo ${{ steps.test.outputs.json }}
