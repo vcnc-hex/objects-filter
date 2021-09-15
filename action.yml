@@ -1,6 +1,10 @@
 name: 'objects-filter'
 description: 'Github Action Utility to filtering and mapping object'
 author: 'vcnc-hex'
+branding:
+  icon: 'award'
+  color: 'green'
+
 inputs:
   json: # change this
     required: true
