@@ -9,9 +9,14 @@ async function run(): Promise<void> {
       include: JSON.parse(json).filter(filter_fn)
     })
     core.setOutput('json', output)
+    core.setOutput('escaped-json', replaceAll(output, '"', '\\x22'))
   } catch (error) {
     core.setFailed(error.message)
   }
+}
+
+function replaceAll(input: string, search: string, replace: string): string {
+  return input.split(search).join(replace)
 }
 
 run()

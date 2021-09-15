@@ -16,6 +16,8 @@ inputs:
 outputs:
   json:
     description: filtered json output as a string
+  escaped-json:
+    description: filtered json output as a double-quote escaped string
 runs:
   using: 'node12'
   main: 'dist/index.js'

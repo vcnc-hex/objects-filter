@@ -46,11 +46,15 @@ function run() {
                 include: JSON.parse(json).filter(filter_fn)
             });
             core.setOutput('json', output);
+            core.setOutput('escaped-json', replaceAll(output, '"', '\\x22'));
         }
         catch (error) {
             core.setFailed(error.message);
         }
     });
+}
+function replaceAll(input, search, replace) {
+    return input.split(search).join(replace);
 }
 run();
 
