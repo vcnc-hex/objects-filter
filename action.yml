@@ -13,7 +13,7 @@ inputs:
     required: true
     description: 'Filter function body with input argument. ex) filter: return input.name'
 
-    outputs:
+outputs:
   json:
     description: filtered json output as a string
 runs:
