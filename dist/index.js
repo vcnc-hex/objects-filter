@@ -39,10 +39,12 @@ const core = __importStar(__nccwpck_require__(186));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const input = core.getInput('input');
+            const json = core.getInput('json');
             const filter = core.getInput('filter');
-            const filter_fn = new Function('label', filter);
-            const output = JSON.stringify(JSON.parse(input).filter(filter_fn));
+            const filter_fn = new Function('input', filter);
+            const output = JSON.stringify({
+                include: JSON.parse(json).filter(filter_fn)
+            });
             core.setOutput('json', output);
         }
         catch (error) {
