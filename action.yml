@@ -1,4 +1,4 @@
-name: 'objects-filter'
+name: Object filter from JSON to JSON
 description: 'Github Action Utility to filtering and mapping object'
 author: vcnc-hex <hex@vcnc.co.kr>
 branding:
