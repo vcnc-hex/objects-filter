@@ -10,5 +10,5 @@ inputs:
     description: 'Filter function body with input argument. ex) filter: return input.name'
 
 runs:
-  using: 'node14'
+  using: 'node12'
   main: 'dist/index.js'
