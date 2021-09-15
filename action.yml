@@ -1,6 +1,6 @@
 name: 'objects-filter'
 description: 'Github Action Utility to filtering and mapping object'
-author: 'vcnc-hex'
+author: vcnc-hex <hex@vcnc.co.kr>
 branding:
   icon: 'award'
   color: 'green'
@@ -13,6 +13,9 @@ inputs:
     required: true
     description: 'Filter function body with input argument. ex) filter: return input.name'
 
+    outputs:
+  json:
+    description: filtered json output as a string
 runs:
   using: 'node12'
   main: 'dist/index.js'
