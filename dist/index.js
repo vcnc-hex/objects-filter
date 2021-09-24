@@ -42,9 +42,13 @@ function run() {
             const json = core.getInput('json');
             const filter = core.getInput('filter');
             const filter_fn = new Function('input', filter);
-            const output = JSON.stringify({
-                include: JSON.parse(json).filter(filter_fn)
-            });
+            const parsed = JSON.parse(json);
+            let output = '';
+            if (parsed instanceof Array) {
+                output = JSON.stringify({
+                    include: parsed.filter(filter_fn)
+                });
+            }
             core.setOutput('json', output);
             core.setOutput('escaped-json', replaceAll(output, '"', '\\"'));
         }
