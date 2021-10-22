@@ -7,12 +7,15 @@ async function run(): Promise<void> {
     const filter_fn = new Function('input', filter) as () => string
 
     const parsed = JSON.parse(json)
-    let output = ''
+    let output = JSON.stringify({
+      include: []
+    })
     if (parsed instanceof Array) {
       output = JSON.stringify({
         include: parsed.filter(filter_fn)
       })
     }
+
     core.setOutput('json', output)
     core.setOutput('escaped-json', replaceAll(output, '"', '\\"'))
   } catch (error) {

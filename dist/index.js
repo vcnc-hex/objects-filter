@@ -43,7 +43,9 @@ function run() {
             const filter = core.getInput('filter');
             const filter_fn = new Function('input', filter);
             const parsed = JSON.parse(json);
-            let output = '';
+            let output = JSON.stringify({
+                include: []
+            });
             if (parsed instanceof Array) {
                 output = JSON.stringify({
                     include: parsed.filter(filter_fn)
